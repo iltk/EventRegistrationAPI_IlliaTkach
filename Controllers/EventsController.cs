@@ -35,4 +35,16 @@ public class EventsController : ControllerBase
 
         return Ok(eventDto);
     }
+    
+    [HttpPost]
+    public async Task<ActionResult<EventDto>> CreateEvent(CreateEventDto dto)
+    {
+        var createdEvent = await _eventService.CreateEventAsync(dto);
+
+        return CreatedAtAction(
+            nameof(GetEventById), 
+            new { id = createdEvent.EventId }, createdEvent);
+    }
 }
+
+

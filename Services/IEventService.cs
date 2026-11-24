@@ -11,4 +11,7 @@ public interface IEventService
     
     Task<EventDto?> GetEventByIdAsync(int id);
     
+    Task<EventDto> CreateEventAsync(CreateEventDto dto);
+
+    
 }

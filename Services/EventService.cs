@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using EventRegistrationAPI_IlliaTkach.DTOs;
+using EventRegistrationAPI_IlliaTkach.Models;
 
 namespace EventRegistrationAPI_IlliaTkach.Services;
 
@@ -43,4 +44,33 @@ public class EventService : IEventService
             })
             .FirstOrDefaultAsync();
     }
+    
+    public async Task<EventDto> CreateEventAsync(CreateEventDto dto)
+    {
+        var campusEvent = new Event
+        {
+            Title = dto.Title,
+            Location = dto.Location,
+            EventDate = dto.EventDate,
+            Capacity = dto.Capacity
+        };
+
+        _db.Events.Add(campusEvent);
+
+        await _db.SaveChangesAsync();
+
+        return new EventDto
+        {
+            EventId = campusEvent.EventId,
+            Title = campusEvent.Title,
+            Location = campusEvent.Location,
+            EventDate = campusEvent.EventDate,
+            Capacity = campusEvent.Capacity,
+            RegisteredCount = 0
+        };
+    }
+    
+
+
+   
 }

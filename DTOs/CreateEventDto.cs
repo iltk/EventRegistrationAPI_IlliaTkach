@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using EventRegistrationAPI_IlliaTkach.Validation;
 
 namespace EventRegistrationAPI_IlliaTkach.DTOs;
 
@@ -11,6 +12,7 @@ public class CreateEventDto
     [Required(ErrorMessage = "Location is required.")]
     public string Location { get; set; } = string.Empty;
 
+    [FutureDate(ErrorMessage = "Event date must be in the future.")]
     public DateTime EventDate { get; set; }
 
     [Range(1, 500, ErrorMessage = "Capacity must be between 1 and 500.")]
