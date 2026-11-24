@@ -1,0 +1,6 @@
+@EventRegistrationAPI_IlliaTkach_HostAddress = http://localhost:5199
+
+GET {{EventRegistrationAPI_IlliaTkach_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
